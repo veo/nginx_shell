@@ -18,7 +18,7 @@ load_module path/ngx_http_cre_module.so
 nignx -s reload
 ```
 
-POST HTTP header `vtoken: whoami` （测试程序只能使用 `whoami` 命令）
+POST HTTP header `vtoken: whoami` （测试程序只允许使用 `whoami` 命令）
 ![](img/run.jpg)
 
 - ### 一、技术特点
@@ -32,14 +32,14 @@ POST HTTP header `vtoken: whoami` （测试程序只能使用 `whoami` 命令）
 2. 需要 nignx -s reload 权限
 
 - ### 三、技术原理
-nginx module 支持动态加载so，通过 __attribute__的方式绕过nginx module version check，可以编译出适应所有nginx版本的module。
+nginx module 支持动态加载so，通过 __attribute ((constructor))的方式绕过nginx module version check，可以编译出适应所有nginx版本的module。
 使用header_filter可以取得命令执行的参数，通过body_filter可以返回命令执行后的结果
 
 
 - ### 四、研究中遇到的问题
 1. 绕过nginx对于module的版本检测
 
-    通过 __attribute__的方式绕过
+    通过 __attribute ((constructor))的方式绕过
 
 
 2. 编写的module要兼容大部分版本
