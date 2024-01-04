@@ -23,6 +23,18 @@ nignx -s reload
 POST HTTP header `vtoken: whoami` （测试程序只允许使用 `whoami` 命令）
 ![](img/run.jpg)
 
+- ### 编译方式
+```
+wget https://nginx.org/download/nginx-1.18.0.tar.gz
+tar -zxvf nginx-1.18.0.tar.gz
+cd nginx-1.18.0
+git clone https://github.com/veo/nginx_shell.git
+./configure --with-compat --add-dynamic-module=./nginx_shell/
+make modules
+```
+编译后的so文件位于 nginx-1.18.0/objs/ngx_http_cre_module.so
+
+
 - ### 一、技术特点
 1. 无需临时编译（传统的 nignx so backdoor 需要临时编译）
 2. 兼容支持大部分 nignx 版本
