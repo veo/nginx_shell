@@ -11,9 +11,9 @@
 
 下载测试程序 [releases](https://github.com/veo/nginx_shell/releases) 
 
-将下载的so放至目标服务器上，修改 nginx.conf 配置文件在第一行添加以下内容，path为路径，ngx_http_cre_module.so名称最好不修改。
+将下载的so放至目标服务器上，修改 nginx.conf 配置文件在第一行添加以下内容，path为路径
 ```
-load_module path/ngx_http_cre_module.so
+load_module path/ngx_http_cre_module.so;
 ```
 然后重载nginx
 ```
@@ -37,7 +37,7 @@ make modules
 
 - ### 一、技术特点
 1. 无需临时编译（传统的 nignx so backdoor 需要临时编译）
-2. 兼容支持大部分 nignx 版本
+2. 兼容 1.9.11 以后的所有版本
 3. 无需额外组件支持
 
 
@@ -60,6 +60,9 @@ nginx module 支持动态加载so，通过 __attribute ((constructor))的方式�
 
     使用较早版本的函数，不使用高版本新增函数
 
+3. ngx_http_request_s 结构体目标编译环境可能会不一致，导致无法兼容
+   
+   编译了两个版本支持不同的编译环境
 
 - ### 五、防御加固方案
 1. 监测Nginx Module的加载，Nginx进程的行为
