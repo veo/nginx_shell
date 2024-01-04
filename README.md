@@ -21,7 +21,10 @@ nignx -s reload
 ```
 
 POST HTTP header `vtoken: whoami` （测试程序只允许使用 `whoami` 命令）
+
+如果无结果返回，可尝试增减header数量
 ![](img/run.jpg)
+![](img/run2.jpg)
 
 - ### 编译方式
 ```
