@@ -60,7 +60,7 @@ nginx module 支持动态加载so，通过 __attribute ((constructor))的方式�
 
     使用较早版本的函数，不使用高版本新增函数
 
-3. 目标编译不一致会导致 ngx_http_request_s 结构体变化，程序无法正常使用
+3. 目标编译参数 --without-http-cache 不一致会导致 ngx_http_request_s 结构体变化，程序无法正常使用
    
    编译了两个版本支持不同的编译环境
 
